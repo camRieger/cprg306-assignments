@@ -1,11 +1,11 @@
-import StudentInfo from "./StudentInfo";
+import {Item} from "@/app/week-3/GroceryItem";
 import {PageHeader} from "@/app/components/PageHeader";
 import NavBar from "@/app/components/NavBar";
 
 export default function Page() {
   const pageHeaderData = {
-    pageTitle: 'Week 2: Student Information',
-    description: "Learn a bit more about me!",
+    pageTitle: 'Week 3: Shopping List',
+    description: "This page uses props to implement a grocery list full of different grocery item components.",
     primaryColour: 'bg-sky-900',
     secondaryColour: 'bg-sky-950',
   }
@@ -17,7 +17,7 @@ export default function Page() {
     <main className={`min-h-screen w-full ${bgGradient}`}>
       <NavBar/>
       <PageHeader {...pageHeaderData}/>
-      <StudentInfo/>
+      <Item name={'milk'} quantity={5} category={'dairy'}/>
     </main>
   );
 }
