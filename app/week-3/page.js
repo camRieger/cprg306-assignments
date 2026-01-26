@@ -1,6 +1,7 @@
 import {Item} from "@/app/week-3/GroceryItem";
 import {PageHeader} from "@/app/components/PageHeader";
 import NavBar from "@/app/components/NavBar";
+import {GroceryItemList} from "@/app/week-3/GroceryItemList";
 
 export default function Page() {
   const pageHeaderData = {
@@ -17,7 +18,13 @@ export default function Page() {
     <main className={`min-h-screen w-full ${bgGradient}`}>
       <NavBar/>
       <PageHeader {...pageHeaderData}/>
-      <Item name={'milk'} quantity={5} category={'dairy'}/>
+
+      <div className={`flex flex-col items-center justify-center`}>
+        <div className="flex align-center items-center h-full w-1/2">
+          <GroceryItemList/>
+        </div>
+      </div>
+
     </main>
   );
 }
