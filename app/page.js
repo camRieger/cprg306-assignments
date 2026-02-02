@@ -22,7 +22,7 @@ export default function Home() {
         <div className="flex flex-row w-full items-center justify-between ">
           <NavItemLarge contents='Week 2: Student Info' source='week-2'/>
           <NavItemLarge contents='Week 3: Shopping List' source='week-3'/>
-          <NavItemLarge contents='Week 4: {Not Implemented}' source='week-4'/>
+          <NavItemLarge contents='Week 4: Improved Shopping List' source='week-4'/>
         </div>
         <div className="flex flex-row w-full items-center justify-between ">
           <NavItemLarge contents='Week 5: {Not Implemented}' source='week-5'/>
