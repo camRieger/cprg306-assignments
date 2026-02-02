@@ -1,4 +1,4 @@
-import {Item} from "@/app/week-3/GroceryItem";
+import {GroceryItem} from "@/app/week-3/GroceryItem";
 
 export function GroceryItemList() {
   const item1 = {
@@ -76,40 +76,40 @@ export function GroceryItemList() {
   return (
     <div className={`flex flex-col h-full w-full rounded-lg bg-[url('/notebookPage.jpg')]  bg-cover bg-center`}>
       <div className="pl-10">
-        <Item {...item1}/>
+        <GroceryItem {...item1}/>
       </div>
       <div className="pl-10">
-        <Item {...item2}/>
+        <GroceryItem {...item2}/>
       </div>
       <div className="pl-10">
-        <Item {...item3}/>
+        <GroceryItem {...item3}/>
       </div>
       <div className="pl-10">
-        <Item {...item4}/>
+        <GroceryItem {...item4}/>
       </div>
       <div className="pl-10">
-        <Item {...item5}/>
+        <GroceryItem {...item5}/>
       </div>
       <div className="pl-10">
-        <Item {...item6}/>
+        <GroceryItem {...item6}/>
       </div>
       <div className="pl-10">
-        <Item {...item7}/>
+        <GroceryItem {...item7}/>
       </div>
       <div className="pl-10">
-        <Item {...item8}/>
+        <GroceryItem {...item8}/>
       </div>
       <div className="pl-10">
-        <Item {...item9}/>
+        <GroceryItem {...item9}/>
       </div>
       <div className="pl-10">
-        <Item {...item10}/>
+        <GroceryItem {...item10}/>
       </div>
       <div className="pl-10">
-        <Item {...item11}/>
+        <GroceryItem {...item11}/>
       </div>
       <div className="pl-10">
-        <Item {...item12}/>
+        <GroceryItem {...item12}/>
       </div>
     </div>
   )

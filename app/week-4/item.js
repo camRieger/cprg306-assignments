@@ -1,4 +1,4 @@
-export function GroceryItem({name, quantity, category}) {
+export function Item({name, quantity, category}) {
   return (
     <div className="w-full h-full p-4 rounded-2xl">
       <h3 className={`text-black text-2xl font-serif`}>{name}</h3>
