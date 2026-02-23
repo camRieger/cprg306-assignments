@@ -45,6 +45,7 @@ export function NewItem() {
   return (
     <div className={`flex flex-col w-full shadow-lg/20 bg-gray-300/30 rounded-2xl items-center p-8 m-4 sticky top-38`}>
       <h1 className="text-2xl mb-6 font-bold">New Grocery Item</h1>
+      <label htmlFor="itemName" className="sr-only">Item Name</label>
       <input className="w-full bg-gray-300/20 p-2 rounded-md"
              id="itemName"
              value={name}
@@ -54,6 +55,7 @@ export function NewItem() {
              required={true}>
       </input>
       <div className="flex flex-row w-full items-center justify-between py-4">
+        <label htmlFor="itemQuantity" className="sr-only">Item Quantity</label>
         <input className="w-1/3 bg-gray-300/20 p-2 rounded-md mr-4"
                id="itemQuantity"
                value={quantity}
@@ -63,11 +65,12 @@ export function NewItem() {
                onChange={event => setQuantity(event.target.value)}
                required={true}>
         </input>
+        <label htmlFor="itemCategory" className="sr-only">Item Category</label>
         <select className="flex-1 bg-gray-300/20 p-2.75 rounded-md text-white"
                 id="itemCategory"
-               value={category}
-               onChange={event => setCategory(event.target.value)}
-               required={true}>
+                value={category}
+                onChange={event => setCategory(event.target.value)}
+                required={true}>
           {categoryList.map((item) =>
             (
               <option className="bg-gray-700" key={item} value={item}>{item}</option>
