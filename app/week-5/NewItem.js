@@ -8,6 +8,21 @@ export function NewItem() {
   const [quantity, setQuantity] = useState(0);
   const [category, setCategory] = useState("Produce");
 
+  const categoryList =
+    [
+      "Produce",
+      "Dairy",
+      "Bakery",
+      "Meat",
+      "Frozen Foods",
+      "Canned Goods",
+      "Dry Goods",
+      "Beverages",
+      "Snacks",
+      "Household",
+      "Other"
+    ];
+
   async function handleSubmit(event) {
     event.preventDefault()
 
@@ -31,6 +46,7 @@ export function NewItem() {
     <div className={`flex flex-col w-full shadow-lg/20 bg-gray-300/30 rounded-2xl items-center p-8 m-4 sticky top-38`}>
       <h1 className="text-2xl mb-6 font-bold">New Grocery Item</h1>
       <input className="w-full bg-gray-300/20 p-2 rounded-md"
+             id="itemName"
              value={name}
              type={"text"}
              onChange={event => setName(event.target.value)}
@@ -39,6 +55,7 @@ export function NewItem() {
       </input>
       <div className="flex flex-row w-full items-center justify-between py-4">
         <input className="w-1/3 bg-gray-300/20 p-2 rounded-md mr-4"
+               id="itemQuantity"
                value={quantity}
                type={"number"}
                min={0}
@@ -47,20 +64,15 @@ export function NewItem() {
                required={true}>
         </input>
         <select className="flex-1 bg-gray-300/20 p-2.75 rounded-md text-white"
+                id="itemCategory"
                value={category}
                onChange={event => setCategory(event.target.value)}
                required={true}>
-          <option className="bg-gray-700" value="Produce">Produce</option>
-          <option className="bg-gray-700" value="Dairy">Dairy</option>
-          <option className="bg-gray-700" value="Bakery">Bakery</option>
-          <option className="bg-gray-700" value="Meat">Meat</option>
-          <option className="bg-gray-700" value="Frozen Foods">Frozen Foods</option>
-          <option className="bg-gray-700" value="Canned Goods">Canned Goods</option>
-          <option className="bg-gray-700" value="Dry Goods">Dry Goods</option>
-          <option className="bg-gray-700" value="Beverages">Beverages</option>
-          <option className="bg-gray-700" value="Snacks">Snacks</option>
-          <option className="bg-gray-700" value="Household">Household</option>
-          <option className="bg-gray-700" value="Other">Other</option>
+          {categoryList.map((item) =>
+            (
+              <option className="bg-gray-700" key={item} value={item}>{item}</option>
+            )
+          )}
         </select>
       </div>
       <button className="mt-4 bg-sky-900 hover:bg-sky-800 cursor-pointer px-10 py-2 rounded-2xl font-bold text-3xl" onClick={handleSubmit}> + </button>
