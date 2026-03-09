@@ -30,7 +30,7 @@ export default function Home() {
           <NavItemLarge contents='Week 7: Advanced State Management' source='week-7'/>
         </div>
         <div className="flex flex-row w-full items-center justify-between ">
-          <NavItemLarge contents='Week 8: {Not Implemented}' source='week-8'/>
+          <NavItemLarge contents='Week 8: Fetching Data from APIs' source='week-8'/>
           <NavItemLarge contents='Week 9: {Not Implemented}' source='week-9'/>
           <NavItemLarge contents='Week 10: {Not Implemented}' source='week-10'/>
         </div>
