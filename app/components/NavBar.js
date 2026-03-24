@@ -1,8 +1,15 @@
+'use client'
+
 import Link from "next/link";
+import {useUserAuth} from "@/app/contexts/AuthContext";
+import {SignInButton, SignOutButton} from "@/app/components/AuthButtons";
 
 export default function NavBar() {
+
+  const { user } = useUserAuth();
+
   return (
-    <div className={`h-[8vh] border-b-1 border-slate-800 flex flex-row items-center bg-slate-900`}>
+    <div className={`h-[8vh] border-b-1 mr-4 border-slate-800 flex flex-row items-center bg-slate-900`}>
       <div className={`pl-8 flex-12`}>
         <Link className={`font-bold`} href={'/'}>CPRG-306: Web Development 2 Assignments</Link>
       </div>
@@ -24,6 +31,10 @@ export default function NavBar() {
           LinkedIn
         </Link>
       </div>
+      {
+        user ? <SignOutButton/> : <SignInButton/>
+      }
+
     </div>
   )
 }

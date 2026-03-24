@@ -1,7 +1,11 @@
+'use client';
+
 import Image from "next/image";
 import {NavItemLarge} from "@/app/components/NavItem";
 import {PageHeader} from "@/app/components/PageHeader";
 import NavBar from "@/app/components/NavBar";
+import {useUserAuth} from "@/app/contexts/AuthContext";
+import {useEffect, useState} from "react";
 
 export default function Home() {
   const pageHeaderData = {
@@ -14,8 +18,32 @@ export default function Home() {
     'bg-linear-to-tr from-slate-200 to-slate-300' +
     'dark:bg-linear-to-tr dark:from-slate-800 dark:to-slate-950'
 
+  const { loggedOutNoti, setLoggedOutNoti } = useUserAuth();
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    if (loggedOutNoti) {
+      setShowPopup(true);
+
+      const timer = setTimeout(() => {
+        setShowPopup(false);
+        setLoggedOutNoti(false);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [loggedOutNoti]);
+
   return (
     <main className={`min-h-screen w-full ${bgGradient}`}>
+      <div
+        className={`fixed top-10 left-1/2 -translate-x-1/2 px-4 py-2 rounded-lg shadow-lg text-white transition-opacity duration-500 ${
+          showPopup ? "opacity-100" : "opacity-0"
+        } bg-sky-600`}
+      >
+        Signed out successfully
+      </div>
+
       <NavBar />
       <PageHeader {...pageHeaderData} />
       <nav className="flex flex-col items-center justify-between">
@@ -31,7 +59,7 @@ export default function Home() {
         </div>
         <div className="flex flex-row w-full items-center justify-between ">
           <NavItemLarge contents='Week 8: Fetching Data from APIs' source='week-8'/>
-          <NavItemLarge contents='Week 9: {Not Implemented}' source='week-9'/>
+          <NavItemLarge contents='Week 9: Firebase Authentication' source='week-9'/>
           <NavItemLarge contents='Week 10: {Not Implemented}' source='week-10'/>
         </div>
       </nav>
