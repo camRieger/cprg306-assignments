@@ -1,19 +1,19 @@
 'use client'
 
 import NavBar from "@/app/components/NavBar";
-import Items from "@/app/week-9/shopping-list/items.json";
 import {PageHeader} from "@/app/components/PageHeader";
-import {NewItem} from "@/app/week-9/shopping-list/NewItem";
-import {ItemList} from "@/app/week-9/shopping-list/item-list";
+import {NewItem} from "@/app/week-10/shopping-list/NewItem";
+import {ItemList} from "@/app/week-10/shopping-list/item-list";
 import {useEffect, useState} from "react";
-import {GetMealIdeas} from "@/app/week-9/shopping-list/MealIdeas";
+import {GetMealIdeas} from "@/app/week-10/shopping-list/MealIdeas";
 import {useUserAuth} from "@/app/contexts/AuthContext";
 import {useRouter} from "next/navigation";
+import { getUserItems, addItem } from "../_services/shopping-list-service";
 
 export default function Page() {
   const pageHeaderData = {
-    pageTitle: 'Week 9: Firebase Authentication',
-    description: "Using the previous iteration of the shopping list as a base, this week requires user authentication in order to access the page.",
+    pageTitle: 'Week 10: Firestore Database',
+    description: "With authentication in place, its time for user data to be stored in a database.",
     primaryColour: 'bg-sky-900',
     secondaryColour: 'bg-sky-950',
   }
@@ -21,8 +21,9 @@ export default function Page() {
     'bg-linear-to-tr from-slate-200 to-slate-300' +
     'dark:bg-linear-to-tr dark:from-slate-800 dark:to-slate-950';
 
-  const [itemList, setItemList] = useState(Items);
+  const [itemList, setItemList] = useState([]);
   const [selectedItem, setSelectedItem] = useState("Pick an Item!")
+  const [refresh, setRefresh] = useState(true);
   const { user, loading } = useUserAuth();
   const router = useRouter();
 
@@ -40,9 +41,16 @@ export default function Page() {
       "Household",
       "Other"
     ];
+  
+  const loadItems = async (id) => {
+    if (!id) return;
+    setItemList(await getUserItems(id));
+  }
 
-  const handleAddItem = (newItem) => {
-    setItemList((prev) => [...prev, newItem]);
+  const handleAddItem = async (newItem) => {
+    if (!user?.uid) return;
+    await addItem(user.uid, newItem);
+    setRefresh(!refresh);
   }
 
   const handleItemSelect = (item) => {
@@ -59,12 +67,14 @@ export default function Page() {
     if (!loading) {
       if (!user) {
         router.replace('/');
+      } else {
+        loadItems(user.uid);
       }
     }
-  }, [user, router]);
+  }, [user, router, refresh]);
 
   return (
-    <main className={`min-h-screen w-full ${bgGradient}`}>
+    <main className={`min-h-screen w-full flex flex-col ${bgGradient}`}>
       <NavBar/>
       {
         user ?
@@ -72,7 +82,7 @@ export default function Page() {
           <div>
             <PageHeader {...pageHeaderData}/>
             <div className={`flex flex-row justify-center`}>
-              <div className='m-6 mr-10 flex-1 flex flex-col sticky top-2 self-start h-[58vh]'>
+              <div className='m-6 mr-10 flex-1 flex flex-col sticky top-2 self-start h-full'>
                 <NewItem onAddItem={handleAddItem} categories={categoryList} />
                 <GetMealIdeas ingredient={selectedItem}/>
               </div>

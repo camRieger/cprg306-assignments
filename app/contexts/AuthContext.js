@@ -12,7 +12,8 @@ import { auth } from "../utils/firebase"
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(undefined);
+  const [loading, setLoading] = useState(true);
   const [loggedOutNoti, setLoggedOutNoti] = useState(false)
 
   const gitHubSignIn = () => {
@@ -26,13 +27,14 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      setUser(currentUser || null);
+      setLoading(false);
     });
     return () => unsubscribe();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, gitHubSignIn, firebaseSignOut, loggedOutNoti, setLoggedOutNoti }}>
+    <AuthContext.Provider value={{ user, loading, gitHubSignIn, firebaseSignOut, loggedOutNoti, setLoggedOutNoti }}>
       {children}
     </AuthContext.Provider>
   );

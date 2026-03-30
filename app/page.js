@@ -26,11 +26,13 @@ export default function Home() {
       setShowPopup(true);
 
       const timer = setTimeout(() => {
-        setShowPopup(false);
         setLoggedOutNoti(false);
-      }, 2000);
+        setShowPopup(false);
+      }, 1000);
 
-      return () => clearTimeout(timer);
+      return () => {
+        clearTimeout(timer);
+      };
     }
   }, [loggedOutNoti]);
 
@@ -60,7 +62,7 @@ export default function Home() {
         <div className="flex flex-row w-full items-center justify-between ">
           <NavItemLarge contents='Week 8: Fetching Data from APIs' source='week-8'/>
           <NavItemLarge contents='Week 9: Firebase Authentication' source='week-9'/>
-          <NavItemLarge contents='Week 10: {Not Implemented}' source='week-10'/>
+          <NavItemLarge contents='Week 10: Firestore Database' source='week-10'/>
         </div>
       </nav>
     </main>
