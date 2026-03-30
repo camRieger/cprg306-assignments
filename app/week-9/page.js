@@ -3,7 +3,6 @@
 import { useUserAuth } from "../contexts/AuthContext";
 import {LoginPage} from "@/app/week-9/LandingPages";
 import { useRouter } from "next/navigation";
-import {signOut} from "firebase/auth";
 import {useEffect} from "react";
 
 export default function Page() {

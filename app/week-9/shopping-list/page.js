@@ -8,7 +8,6 @@ import {ItemList} from "@/app/week-9/shopping-list/item-list";
 import {useEffect, useState} from "react";
 import {GetMealIdeas} from "@/app/week-9/shopping-list/MealIdeas";
 import {useUserAuth} from "@/app/contexts/AuthContext";
-import {router} from "next/client";
 import {useRouter} from "next/navigation";
 
 export default function Page() {
@@ -54,7 +53,6 @@ export default function Page() {
     ).split(",")[0].trim();
 
     setSelectedItem(itemName);
-    console.log(itemName);
   }
 
   useEffect(() => {

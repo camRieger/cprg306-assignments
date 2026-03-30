@@ -50,7 +50,6 @@ export default function Page() {
     ).split(",")[0].trim();
 
     setSelectedItem(itemName);
-    console.log(itemName);
   }
 
   return (

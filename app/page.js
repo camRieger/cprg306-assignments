@@ -24,10 +24,10 @@ export default function Home() {
   useEffect(() => {
     if (loggedOutNoti) {
       setShowPopup(true);
-      setLoggedOutNoti(false);
 
       const timer = setTimeout(() => {
         setShowPopup(false);
+        setLoggedOutNoti(false);
       }, 2000);
 
       return () => clearTimeout(timer);
